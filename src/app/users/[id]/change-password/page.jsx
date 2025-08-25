@@ -1,11 +1,5 @@
 "use client";
 
-//metadata
-export const metadata = {
-  title: "Change Password ||StreamR",
-  description: "Changing User password.",
-};
-
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import BackButton from "@/components/BackButton";
