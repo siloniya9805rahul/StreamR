@@ -49,7 +49,7 @@ export default async function Home({ searchParams }) {
           <MovieCarousel movies={JSON.parse(JSON.stringify(searchMovies))} />
         ) : (
           <p className="text-white text-center mt-10">
-            No movies found for "{search}"
+            No movies found for {`"${search}"`}
           </p>
         )
       ) : (
