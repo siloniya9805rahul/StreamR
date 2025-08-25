@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+
+:root {
+  margin: 0;
+  padding: 0;
+  --theme-color: #f3f4f6; /* background */
+  --standard-color: #3b82f6; /* primary blue */
+  --secondary-color: #1f2937; /* dark gray */
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  font-family: sans-serif;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE & Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slideIn {
+  animation: slideIn 0.2s ease-out forwards;
+}
