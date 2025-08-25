@@ -1,4 +1,4 @@
-import dbConnect from "@/lib/dbConnect";
+import dbConnect from "@/lib/db";
 import Movie from "@/models/Movie";
 
 export async function GET(req) {
