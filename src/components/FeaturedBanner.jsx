@@ -28,7 +28,7 @@ export default async function FeaturedBanner({ genre, search }) {
           {movie?.movieName}
         </h1>
 
-        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-start">
           <Link
             href={`/watch/${movie?._id}`}
             className="px-4 py-2 sm:px-6 sm:py-2 bg-white text-black 
