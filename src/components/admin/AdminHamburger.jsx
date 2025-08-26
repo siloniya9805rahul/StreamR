@@ -50,7 +50,7 @@ export default function AdminHamburger() {
           >
             ➕ Add Series
           </Link>
-          <Link href="/" className="fixed bottom-30 right-5 bg-red-600 px-4 py-2 rounded text-center hover:bg-red-700">
+          <Link href="/" className="fixed bottom-40 right-5 bg-red-600 px-4 py-2 rounded text-center hover:bg-red-700">
                       🔙 Back to Home
                     </Link>
         </div>

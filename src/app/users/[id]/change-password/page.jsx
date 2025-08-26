@@ -1,12 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import BackButton from "@/components/BackButton";
 import { toast } from "react-toastify";
 
-export default async function ForgetPasswordPage({ params }) {
-  const { id } = await params;
+export default function ForgetPasswordPage() {
+  const { id } = useParams();
   const router = useRouter();
 
   const [password, setPassword] = useState("");
@@ -20,7 +20,7 @@ export default async function ForgetPasswordPage({ params }) {
       toast.error("Passwords do not match!");
       return;
     }
-    
+
     setLoading(true);
 
     try {
@@ -34,7 +34,7 @@ export default async function ForgetPasswordPage({ params }) {
       if (!res.ok) throw new Error(data.message || "Error updating password");
 
       toast.success("Password updated successfully!");
-      router.push("/login");
+      setTimeout(() => router.push("/login"), 1500);
     } catch (err) {
       toast.error(err.message);
     } finally {
@@ -44,7 +44,7 @@ export default async function ForgetPasswordPage({ params }) {
 
   return (
     <div className="min-h-screen bg-black text-white">
-<BackButton/>
+      <BackButton />
       <div className="flex items-center justify-center ">
         <form
           onSubmit={handleSubmit}
@@ -52,7 +52,7 @@ export default async function ForgetPasswordPage({ params }) {
         >
           <h1 className="text-2xl font-bold mb-6 text-center">Reset Password</h1>
 
-          
+
 
           <div className="mb-4">
             <label className="block text-sm mb-1">New Password</label>
@@ -62,7 +62,9 @@ export default async function ForgetPasswordPage({ params }) {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              minLength={6}
+              pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$"
+              title="Password must be at least 6 characters long, include one uppercase letter, one lowercase letter, and one number."
+
             />
           </div>
 
@@ -74,13 +76,18 @@ export default async function ForgetPasswordPage({ params }) {
               value={confirm}
               onChange={(e) => setConfirm(e.target.value)}
               required
+              aria-label="New Password"
             />
           </div>
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-red-600 hover:bg-red-700 transition p-3 rounded-lg font-semibold"
+            className={`w-full p-3 rounded-lg font-semibold transition 
+  ${loading
+                ? "bg-gray-600 cursor-not-allowed"
+                : "bg-red-600 hover:bg-red-700"}`}
+
           >
             {loading ? "Updating..." : "Update Password"}
           </button>

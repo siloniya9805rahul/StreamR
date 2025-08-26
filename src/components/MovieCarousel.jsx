@@ -17,19 +17,19 @@ export default function MovieCarousel({ movies }) {
     });
   };
 
-  // Map mouse wheel to horizontal scroll
+  // Horizontal scroll with mouse wheel
   const handleWheel = (e) => {
     if (scrollRef.current) {
       e.preventDefault();
       scrollRef.current.scrollBy({
-        left: e.deltaY, // vertical wheel → horizontal scroll
+        left: e.deltaY,
         behavior: "smooth",
       });
     }
   };
 
   return (
-    <div className="relative">
+    <div className="relative px-10">
       {/* Left Button */}
       <button
         onClick={() => scroll("left")}
@@ -41,39 +41,45 @@ export default function MovieCarousel({ movies }) {
       {/* Movie List */}
       <div
         ref={scrollRef}
-        onWheel={handleWheel}
-        className="flex gap-4 overflow-x-scroll scrollbar-hide scroll-smooth scrollbar-hide"
+        onWheel={(e) => {
+    if (window.innerWidth > 668) handleWheel(e); // only for desktop
+  }}
+        className="flex gap-4 overflow-x-scroll scroll-smooth scrollbar-hide"
       >
         {movies.map((movie) => (
-          <Link href={`/watch/${movie._id}`}
+          <Link
+            href={`/watch/${movie._id}`}
             key={movie._id}
-            className="min-w-[180px] flex-shrink-0 bg-gray-800 rounded-lg overflow-hidden"
+            className="min-w-[180px] flex-shrink-0 bg-gray-800 rounded-lg overflow-hidden relative"
             onMouseEnter={() => {
-              const timeout = setTimeout(() => setHoveredId(movie._id), 1000); // 1000ms delay like Netflix
+              if (hoverTimeout) clearTimeout(hoverTimeout);
+              const timeout = setTimeout(() => setHoveredId(movie._id), 800); // Slightly faster Netflix feel
               setHoverTimeout(timeout);
             }}
             onMouseLeave={() => {
-              clearTimeout(hoverTimeout);
+              if (hoverTimeout) clearTimeout(hoverTimeout);
               setHoveredId(null);
             }}
           >
-            {hoveredId === movie._id ? (
+            {hoveredId === movie._id && movie.trailer?.url ? (
               <video
                 src={movie.trailer.url}
                 autoPlay
                 muted
                 loop
-                className="max-w-75 h-full object-cover"
+                className="max-w-75 h-[270px] object-cover"
               />
             ) : (
               <img
                 src={movie.poster.url}
                 alt={movie.title}
                 loading="lazy"
-                className="w-full h-full object-cover"
+                className="max-w-75 h-[270px] object-cover"
               />
             )}
-            <p className="text-white text-sm p-2 truncate">{movie.title}</p>
+            <p className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent text-white text-sm p-2 truncate">
+              {movie.title}
+            </p>
           </Link>
         ))}
       </div>

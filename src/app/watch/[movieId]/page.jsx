@@ -41,10 +41,10 @@ export default async function WatchMoviePage({ params }) {
   return (
     <main className="bg-black min-h-screen">
       <BackButton />
-      <div className="flex flex-col md:flex-row gap-6 ">
+      <div className="flex flex-col md:flex-row gap-6 px-4 md:px-8">
         
         {/* Video Section */}
-        <div className="w-full md:w-[70%]">
+        <div className="w-full md:w-[70%] aspect-video">
           <VideoPlayer src={movie.video.url} poster={movie.poster.url} />
         </div>
 
@@ -54,7 +54,7 @@ export default async function WatchMoviePage({ params }) {
           <p className="text-gray-300">
             <strong>Genre:</strong> {movie.genre}
           </p>
-          <p className="text-gray-300">
+          <p className="text-gray-300 max-h-40 overflow-y-auto">
             <strong>Description:</strong> {movie.description}
           </p>
           <p className="text-gray-400 text-sm">

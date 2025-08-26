@@ -90,38 +90,43 @@ export default function SeriesForm({ movies ,genreList}) {
       {/* Movies with Pagination */}
       <div>
         <label className="block font-medium mb-2">Select Movies</label>
-        <div className="space-y-2 max-h-64 overflow-y-auto border rounded p-3">
-          {currentMovies.map((movie) => (
-            <div key={movie._id} className="flex items-center gap-2">
-              <input
-                type="checkbox"
-                id={`movie-${movie._id}`}
-                checked={selectedMovies.includes(movie._id)}
-                onChange={() => handleCheckboxChange(movie._id)}
-              />
-              <label htmlFor={`movie-${movie._id}`} className="cursor-pointer">
-                {movie.movieName}
-              </label>
-            </div>
-          ))}
-        </div>
+        <div className="space-y-2 max-h-64 sm:max-h-80 overflow-y-auto border rounded p-3">
+  {currentMovies.map((movie) => (
+    <div key={movie._id} className="flex items-center gap-2">
+      <input
+        type="checkbox"
+        id={`movie-${movie._id}`}
+        checked={selectedMovies.includes(movie._id)}
+        onChange={() => handleCheckboxChange(movie._id)}
+      />
+      <label
+        htmlFor={`movie-${movie._id}`}
+        className="cursor-pointer text-sm sm:text-base"
+      >
+        {movie.movieName}
+      </label>
+    </div>
+  ))}
+</div>
 
-        {/* Pagination Tabs */}
-        <div className="flex gap-2 mt-3 flex-wrap">
-          {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-            <button
-              key={page}
-              type="button"
-              onClick={() => setCurrentPage(page)}
-              className={`px-3 py-1 rounded ${currentPage === page
-                ? "bg-blue-600 text-white"
-                : "bg-gray-200 text-gray-700"
-                }`}
-            >
-              {page}
-            </button>
-          ))}
-        </div>
+{/* Pagination */}
+<div className="flex gap-2 mt-3 flex-wrap justify-center sm:justify-start">
+  {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+    <button
+      key={page}
+      type="button"
+      onClick={() => setCurrentPage(page)}
+      className={`px-3 py-1 rounded text-sm sm:text-base ${
+        currentPage === page
+          ? "bg-blue-600 text-white"
+          : "bg-gray-200 text-gray-700"
+      }`}
+    >
+      {page}
+    </button>
+  ))}
+</div>
+
       </div>
 
       {/* Submit Button */}

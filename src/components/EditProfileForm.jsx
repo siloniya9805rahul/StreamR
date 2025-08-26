@@ -98,7 +98,7 @@ export default function EditProfileForm({ user }) {
                 {/* Profile Image */}
                 <div className="relative w-32 h-32 mx-auto">
                     <img
-                        src={formData.avatar?.url}
+                        src={formData.avatar?.url || "/avatar.jpg"}
                         alt="Profile"
                         className="w-32 h-32 rounded-full object-cover border"
                     />

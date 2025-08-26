@@ -1,20 +1,25 @@
 @import "tailwindcss";
 
-
 :root {
-  margin: 0;
-  padding: 0;
   --theme-color: #f3f4f6; /* background */
   --standard-color: #3b82f6; /* primary blue */
   --secondary-color: #1f2937; /* dark gray */
 }
 
-body {
-  height: 100%;
+/* Reset */
+html, body {
   margin: 0;
-  font-family: sans-serif;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  font-family: sans-serif;background: var(--theme-color);
 }
 
+/* ✅ Let pages scroll properly */
+body {
+  min-height: 100vh;}
+
+/* Scrollbar hiding (safe) */
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
@@ -23,6 +28,7 @@ body {
   scrollbar-width: none;     /* Firefox */
 }
 
+/* Animations */
 @keyframes slideIn {
   from {
     opacity: 0;

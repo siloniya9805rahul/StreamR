@@ -24,7 +24,7 @@ export default async function Home({ searchParams }) {
     let query = {};
   if (genre) query.genre = genre;
   let searchMovies = [];
-  if (search) {
+  if (search && search.trim() !== "") {
     searchMovies = await Movie.find({
       movieName: { $regex: `^${search}`, $options: "i" },
       ...(genre && { genre }),

@@ -43,7 +43,7 @@ export default async function AdminLayout({ children }) {
           </Link>
         </aside>
         
-        <main className="flex-1 bg-gray-100 p-10 md:p-6">{children}</main>
+        <main className="flex-1 bg-gray-100 py-10  md:p-6">{children}</main>
       </div>
       <AdminHamburger />
     </>

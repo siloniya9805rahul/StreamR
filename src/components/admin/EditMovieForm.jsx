@@ -192,6 +192,7 @@ export default function EditMovieForm({ movie }) {
             type="file"
             accept="image/*"
             className="hidden"
+            disabled={loadingPoster}
             onChange={handlePosterChange}
           />
         </div>
@@ -199,11 +200,14 @@ export default function EditMovieForm({ movie }) {
 
       {/* Submit */}
       <button
-        type="submit"
-        className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
-      >
-        Save Changes
-      </button>
+  type="submit"
+  disabled={loadingPoster}
+  className={`bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 ${
+    loadingPoster ? "opacity-50 cursor-not-allowed" : ""
+  }`}
+>
+  Save Changes
+</button>
     </form>
   );
 }

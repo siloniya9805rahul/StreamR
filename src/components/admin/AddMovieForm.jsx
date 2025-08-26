@@ -150,7 +150,7 @@ export default function AddMovieForm() {
           <textarea
             ref={descriptionRef}
             placeholder="Enter Movie Description"
-            className="w-full p-2 rounded bg-gray-800 border border-gray-700"
+            className="w-full min-h-40 p-2 rounded bg-gray-800 border border-gray-700"
           />
         </div>
 

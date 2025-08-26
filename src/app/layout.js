@@ -7,7 +7,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         {children}
-        <ToastContainer position="top-right" autoClose={5000} />
+        <ToastContainer position="top-right" autoClose={2000} />
       </body>
     </html>
   );

@@ -32,7 +32,9 @@ export default function SignupPage() {
       }
 
       toast.success("Signup successful 🎉");
-      window.location.href = "/login"; // redirect after signup
+      setTimeout(() => {
+        window.location.href = "/login"; // redirect after signup
+      }, 1500); // delay so toast is visible
     } catch (error) {
       console.error(error);
       toast.error("Something went wrong");
@@ -45,11 +47,11 @@ export default function SignupPage() {
       <div className="w-full flex justify-between items-center px-6 mb-6">
         <h1 className="text-3xl font-bold text-blue-600">StreamR</h1>
         <Link
-                  href="/login"
-                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-                >
-                  Login
-                </Link>
+          href="/login"
+          className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+        >
+          Login
+        </Link>
       </div>
 
       <form
