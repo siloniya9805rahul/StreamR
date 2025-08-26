@@ -15,7 +15,7 @@ export default function FeaturedMovieMoreInfo({ description }) {
       </button>
 
       {show && (
-        <p className="mt-2 max-w-md bg-gray-800/90 p-3 rounded-md text-sm md:text-base leading-relaxed">
+        <p className={`mt-2 max-w-md bg-gray-800/90 p-3 rounded-md text-sm md:text-base leading-relaxed ${show ? "line-clamp-none" : "line-clamp-3"}`}>
           {description}
         </p>
       )}

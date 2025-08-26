@@ -31,8 +31,8 @@ export default async function FeaturedBanner({ genre, search }) {
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-start">
           <Link
             href={`/watch/${movie?._id}`}
-            className="px-4 py-2 sm:px-6 sm:py-2 bg-white text-black 
-                       rounded-lg font-semibold hover:bg-gray-200 text-sm sm:text-base"
+            className="px-2 py-2 sm:px-6 sm:py-2 bg-white text-black 
+                       rounded-lg font-semibold hover:bg-gray-200 text-sm sm:text-base min-w-[100px]"
           >
             ▶ Play
           </Link>
