@@ -1,12 +1,14 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 import { toast } from "react-toastify";
+import Load from "./Loader";
 
 export default function LoginForm() {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
+  const [loading, setLoading] = useState(false);
 
   async function handleLogin(e) {
     e.preventDefault();
@@ -15,6 +17,7 @@ export default function LoginForm() {
     const password = passwordRef.current.value;
 
     try {
+      setLoading(true)
       const res = await fetch("/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -33,6 +36,8 @@ export default function LoginForm() {
       window.location.href = "/"; 
     } catch (error) {
       toast.error("Something went wrong!");
+    }finally{
+      setLoading(false)
     }
   }
 
@@ -82,9 +87,9 @@ export default function LoginForm() {
         </div>
         <button
           type="submit"
-          className="w-full py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 cursor-pointer"
+          className="w-full flex justify-center py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 cursor-pointer"
         >
-          Login
+          {loading?<Load/>:"Login"}
         </button>
       </form>
     </div>

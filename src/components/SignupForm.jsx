@@ -1,14 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import { useRef } from "react";
+import { useRef,useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Load from "./Loader";
 
 export default function SignupPage() {
   const nameRef = useRef(null);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
+  const [loading, setLoading] = useState(false);
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,6 +21,7 @@ export default function SignupPage() {
     const password = passwordRef.current.value;
 
     try {
+      setLoading(true)
       const res = await fetch("/api/auth/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -38,6 +42,8 @@ export default function SignupPage() {
     } catch (error) {
       console.error(error);
       toast.error("Something went wrong");
+    }finally{
+      setLoading(false)
     }
   };
 
@@ -85,9 +91,9 @@ export default function SignupPage() {
 
         <button
           onClick={handleSubmit}
-          className="w-full cursor-pointer bg-blue-600 text-white p-2 rounded hover:bg-blue-700"
+          className="w-full flex justify-center cursor-pointer bg-blue-600 text-white p-2 rounded hover:bg-blue-700"
         >
-          Sign Up
+          {loading?<Load/>:"Sign up"}
         </button>
       </form>
     </div>

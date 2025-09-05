@@ -4,9 +4,15 @@ export const metadata = {
     "View total users, active users, new users in the last 7 days. Track the user's stats over the last year.",
 };
 
-import UsersChart from "@/components/admin/UserChart";
+import dynamic from "next/dynamic";
 import connectDB from "@/lib/db";
 import User from "@/models/User";
+
+const UsersChart = dynamic(() => import("@/components/admin/UserChart"), {
+  loading: () => <p>Loading...</p>, // shows while component loads
+  ssr: true, // default, set to false if you only want client-side
+});
+
 
 export default async function AdminDashboard() {
   await connectDB();

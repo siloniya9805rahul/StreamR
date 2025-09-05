@@ -29,7 +29,7 @@ export default function MovieCarousel({ movies }) {
   };
 
   return (
-    <div className="relative px-10">
+    <div className="relative px-7 md:px-10">
       {/* Left Button */}
       <button
         onClick={() => scroll("left")}
@@ -63,22 +63,23 @@ export default function MovieCarousel({ movies }) {
           >
             {hoveredId === movie._id && movie.trailer?.url ? (
               <video
-                src={movie.trailer.url}
+                src={movie?.trailer?.url}
                 autoPlay
                 muted
                 loop
+                loading="lazy"
                 className="max-w-75 h-[270px] object-cover"
               />
             ) : (
               <img
-                src={movie.poster.url}
-                alt={movie.title}
+                src={movie?.poster?.url}
+                alt={movie?.movieName}
                 loading="lazy"
                 className="max-w-75 h-[270px] object-cover"
               />
             )}
             <p className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent text-white text-sm p-2 truncate">
-              {movie.title}
+              {movie?.movieName}
             </p>
           </Link>
         ))}

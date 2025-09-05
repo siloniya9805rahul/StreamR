@@ -11,7 +11,8 @@ export const metadata = {
 export default async function EditMoviePage({ params }) {
   await dbConnect();
   const {id} = await params;
-  const movie = await Movie.findById(id).lean();
+  const movie = await Movie.findById(id,"movieName poster genre description").lean();
+  
 
   return (
     <div>

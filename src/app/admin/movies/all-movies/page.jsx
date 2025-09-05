@@ -24,12 +24,11 @@ export default async function AllMoviesPage({ searchParams }) {
   const skip = (page - 1) * limit;
 
   // Fetch movies with pagination
-  const movies = await Movie.find({})
+  const movies = await Movie.find({},"movieName poster genre")
     .sort({ createdAt: -1 })
     .skip(skip)
     .limit(limit)
     .lean();
-
   const totalMovies = await Movie.countDocuments();
   const totalPages = Math.ceil(totalMovies / limit);
 

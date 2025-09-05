@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { Pencil, Loader2 } from "lucide-react";
+import { Pencil } from "lucide-react";
 import { useRouter } from "next/navigation";
+import Load from "../Loader";
 
 export default function EditMovieForm({ movie }) {
   const [movieName, setMovieName] = useState(movie.movieName || "");
@@ -151,7 +152,7 @@ export default function EditMovieForm({ movie }) {
           value={genre}
           onChange={(e) => setGenre(e.target.value)}
         >
-          <option value={genre}>-- Select Genre --</option>
+          <option value="">-- Select Genre --</option>
           {genreList.map((g) => (
             <option key={g} value={g}>
               {g}
@@ -182,7 +183,7 @@ export default function EditMovieForm({ movie }) {
             className="absolute bottom-2 right-2 bg-white rounded-full p-2 shadow cursor-pointer"
           >
             {loadingPoster ? (
-              <Loader2 className="animate-spin w-5 h-5 text-gray-500" />
+              <Load />
             ) : (
               <Pencil className="w-5 h-5 text-gray-600" />
             )}
