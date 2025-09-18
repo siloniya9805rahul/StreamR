@@ -10,7 +10,7 @@ import AddMovieForm from "@/components/admin/AddMovieForm";
 export default function AddMoviePage() {
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-6">Add Movie</h1>
+      <h1 className="text-3xl font-bold mb-6 mx-4 md:mx-0">Upload a Movie</h1>
       <AddMovieForm />
     </div>
   );

@@ -89,7 +89,7 @@ export default function LoginForm() {
           type="submit"
           className="w-full flex justify-center py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 cursor-pointer"
         >
-          {loading?<Load/>:"Login"}
+          {loading?<Load color={"white"} />:"Login"}
         </button>
       </form>
     </div>

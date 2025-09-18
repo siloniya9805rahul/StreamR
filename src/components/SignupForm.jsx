@@ -93,7 +93,7 @@ export default function SignupPage() {
           onClick={handleSubmit}
           className="w-full flex justify-center cursor-pointer bg-blue-600 text-white p-2 rounded hover:bg-blue-700"
         >
-          {loading?<Load/>:"Sign up"}
+          {loading?<Load color={"white"} />:"Sign up"}
         </button>
       </form>
     </div>
