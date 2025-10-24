@@ -49,7 +49,8 @@ export default function Navbar({isAdmin}) {
       </div>
 
       {/* Mobile Hamburger Button */}
-      <button
+      <button 
+        aria-label="menu"
         onClick={() => setIsOpen(!isOpen)}
         className="md:hidden focus:outline-none text-white"
       >

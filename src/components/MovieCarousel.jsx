@@ -33,6 +33,7 @@ export default function MovieCarousel({ movies }) {
       {/* Left Button */}
       <button
         onClick={() => scroll("left")}
+        aria-label="slide left"
         className="absolute left-0 top-1/2 -translate-y-1/2 bg-black/60 text-white p-2 rounded-full z-10 hover:bg-black"
       >
         <ChevronLeft size={24} />
@@ -61,21 +62,21 @@ export default function MovieCarousel({ movies }) {
               setHoveredId(null);
             }}
           >
-            {hoveredId === movie._id && movie.trailer?.url ? (
+            {hoveredId === movie._id && movie.trailer?.public_id ? (
               <video
-                src={movie?.trailer?.url}
+                src={`https://res.cloudinary.com/rahul-siloniya/video/upload/w_320,h_200,c_fill,f_auto,q_auto:best/${movie.trailer.public_id}.mp4`}
                 autoPlay
                 muted
                 loop
                 loading="lazy"
-                className="max-w-75 h-[270px] object-cover"
+                className="aspect-[1.6] h-[200px] object-cover"
               />
             ) : (
               <img
-                src={movie?.poster?.url}
+                src={`https://res.cloudinary.com/rahul-siloniya/image/upload/w_320,h_200,c_fill,f_auto,q_auto:best/${movie.poster.public_id}.jpg`}
                 alt={movie?.movieName}
                 loading="lazy"
-                className="max-w-75 h-[270px] object-cover"
+                className="aspect-[1.6] h-[200px] object-cover"
               />
             )}
             <p className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent text-white text-sm p-2 truncate">
@@ -88,6 +89,7 @@ export default function MovieCarousel({ movies }) {
       {/* Right Button */}
       <button
         onClick={() => scroll("right")}
+        aria-label="slide right"
         className="absolute right-0 top-1/2 -translate-y-1/2 bg-black/60 text-white p-2 rounded-full z-10 hover:bg-black"
       >
         <ChevronRight size={24} />
